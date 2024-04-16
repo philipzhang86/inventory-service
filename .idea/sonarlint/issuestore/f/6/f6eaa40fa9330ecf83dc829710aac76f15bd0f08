@@ -1,0 +1,9 @@
+
+†	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(ì®êùûÿÿÿÿJ$1338c7c7-c5c9-4958-8235-595d0b2cdd01
+•	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(÷©ÙàJ$9d995cd5-51c4-4ea6-8a47-82fa5b9b9b4e
+~
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞJ$8328c71e-4946-4308-90e5-fbc26423b366
+‘
+java:S3305"UInject this field value directly into "redissonClient", the only method that uses it.(å½ÆJ$1b4ee8e0-e03a-413a-88dc-054d1e559f8a
+g
+java:S1068"+Remove this unused "timeout" private field.(÷©ÙàJ$ba0f94b4-8d63-40a0-8054-1dcd34697f46

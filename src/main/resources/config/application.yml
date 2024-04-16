@@ -1,0 +1,60 @@
+server:
+  port: 9082
+  servlet:
+    contextPath: /${spring.application.name}
+#http://localhost:9080/demo/ url address
+eureka:
+  client:
+    service-url:
+        defaultZone: http://localhost:8761/eureka/
+
+
+
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: postgres
+    password: 1234567890
+    url: jdbc:postgresql://localhost:5432/mwms
+    driver-class-name: org.postgresql.Driver
+  # 引入commons 基础组件中的配置文件
+  config:
+    import:
+      - classpath:config/application.yml
+      - classpath:config/redisson.yml
+  main:
+    allow-bean-definition-overriding: true
+
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: group1
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 0
+      acks: 1
+      compression-type: snappy
+
+mybatis-plus:
+  configuration:
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.jmalltech.entity
+  mapper-locations: classpath:mapper/*.xml
+
+# log config
+logging:
+  config: classpath:logback.xml
+  level:
+    root: info
+    com.jmalltech: debug
+    org.redisson: debug
