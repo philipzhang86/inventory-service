@@ -1,6 +1,9 @@
 package com.jmalltech.service;
 
+import com.jmalltech.client.AsnServiceClient;
+import com.jmalltech.entity.AsnItem;
 import com.jmalltech.entity.Inventory;
+import com.jmalltech.entity.Product;
 import com.jmalltech.mapper.InventoryMapper;
 import com.jmalltech.repository.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,9 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +25,48 @@ public class InventoryDomainService {
     private InventoryService service;
     private InventoryMapper mapper;
     private CacheManager cacheManager;
+  /*  private ObjectMapper objectMapper = new ObjectMapper();
+    private WebClient webClient = WebClient.create();
+    @Autowired
+    private KafkaTemplate<String,String> kafkaTemplate;
+
+    public void receiveAsnMessage(String message) throws Exception {
+        Inventory inventory = objectMapper.readValue(message, Inventory.class);
+        service.save(inventory);
+    }*/
+
+    @Autowired
+    private AsnServiceClient asnServiceClient;
+
+    public Mono<Void> updateInventoryUsingAsn(Long asnId) {
+        return asnServiceClient.getAsnItemsByAsnId(asnId)
+                .flatMapMany(Flux::fromIterable)
+                .flatMap(asnItem ->
+                        asnServiceClient.getProductById(asnItem.getProductId())
+                                .publishOn(Schedulers.boundedElastic())
+                                .flatMap(product -> updateInventory(asnItem, product))
+                )
+                .then();
+    }
+
+    private Mono<Void> updateInventory(AsnItem asnItem, Product product) {
+        return Mono.fromCallable(() -> {
+            Inventory inventory = mapper.selectByProductId(asnItem.getProductId());
+            if (inventory == null) {
+                inventory = new Inventory();
+                inventory.setProductId(asnItem.getProductId());
+                inventory.setClientId(product.getClientId());
+                inventory.setProductName(product.getName());
+                inventory.setSku(product.getSku());
+                inventory.setQuantity(asnItem.getQuantity());
+                service.save(inventory);
+            } else {
+                inventory.setQuantity(inventory.getQuantity() + asnItem.getQuantity());
+                service.updateById(inventory);
+            }
+            return null;
+        }).subscribeOn(Schedulers.boundedElastic()).then();
+    }
 
     @Autowired
     public InventoryDomainService(InventoryService service, InventoryMapper mapper, CacheManager cacheManager) {

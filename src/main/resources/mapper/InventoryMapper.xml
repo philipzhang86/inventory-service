@@ -40,4 +40,11 @@
         FROM mwms_inventory
         WHERE client_id = #{clientId}
     </select>
+
+    <select id="selectByProductId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM mwms_inventory
+        WHERE product_id = #{productId}
+    </select>
 </mapper>

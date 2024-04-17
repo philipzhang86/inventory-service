@@ -44,6 +44,7 @@ spring:
       acks: 1
       compression-type: snappy
 
+
 mybatis-plus:
   configuration:
     auto-mapping-behavior: full

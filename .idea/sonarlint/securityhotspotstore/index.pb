@@ -1,6 +1,4 @@
 
-U
-%src/main/java/com/jmalltech/Main.java,9/f/9f93a41d4e96d67c1b721ef16768a225eb66f373
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 l
@@ -21,10 +19,6 @@ a
 1src/main/java/com/jmalltech/entity/Inventory.java,9/1/915b8c98839a4cc8aa9c69fe9f0cc30786a85c8b
 g
 7src/main/java/com/jmalltech/mapper/InventoryMapper.java,9/f/9fdda677e127467559339fe7baabdc8b473820fb
-i
-9src/main/java/com/jmalltech/service/InventoryService.java,b/2/b24404d68de1a8df8fdfe77a0c80b7ba9971139a
-r
-Bsrc/main/java/com/jmalltech/service/impl/InventoryServiceImpl.java,d/a/da8e13d9e741d888cbeb7c243457f02ca147a6f8
 o
 ?src/main/java/com/jmalltech/service/InventoryDomainService.java,5/8/58c9db46e7aa2e90ad464ae221cf977308c3057e
 ^
@@ -94,3 +88,17 @@ L
 Q.idea/sonarlint/securityhotspotstore/9/6/967f3b1baf8e6ff6e3a727d1c3a26c79f9e46385,7/b/7b20378d7a942fdc0ffe183b9afd4a2eb921b275
 Å
 Q.idea/sonarlint/securityhotspotstore/d/6/d6e88e1b35779561b3d69a3e193068dfb40712e2,5/9/594a9c4cd554c7f412ed3d4a2384d3d1b53e0da0
+k
+;src/main/java/com/jmalltech/config/KafkaConsumerConfig.java,4/9/49d84ec9c71e8b959a1003da92052da62ab00750
+[
++src/main/java/com/jmalltech/entity/Asn.java,7/5/75166cdfaee4a8d4f6052dc0a1ae197bb7cff1e8
+k
+;src/main/java/com/jmalltech/config/KafkaProducerConfig.java,8/b/8ba8db18e5b8e6a1b07281caf582d0697726bcb3
+h
+8src/main/java/com/jmalltech/client/AsnServiceClient.java,9/3/93844d944b83f4505ee989862ae9de12cf9f22a4
+_
+/src/main/java/com/jmalltech/entity/AsnItem.java,7/e/7e9d6eebea725b5367e635b2930cf372521fdc49
+_
+/src/main/java/com/jmalltech/entity/Product.java,e/e/eecf2318406b922ec4b0514bd42c58f80fae500c
+g
+7src/main/java/com/jmalltech/config/WebClientConfig.java,6/2/62f38df145fa3789704b26e4784c7fdf4753b6f4

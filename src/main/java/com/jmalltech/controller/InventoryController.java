@@ -49,6 +49,11 @@ public class InventoryController {
         }
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<?> getInventoryList(){
+        return ResponseEntity.ok(inventoryService.getInventoryList());
+    }
+
     @PostMapping("/")
     public ResponseEntity<Inventory> insertInventory(@RequestBody Inventory inventory) {
         Inventory createdInventory = inventoryService.insert(inventory);

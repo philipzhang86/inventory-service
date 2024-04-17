@@ -18,6 +18,8 @@ public interface InventoryMapper extends BaseMapper<Inventory> {
     Inventory selectByProductName(String productName);
 
     List<Inventory> selectByClientId(Long clientId);
+
+    Inventory selectByProductId(Long productId);
 }
 
 

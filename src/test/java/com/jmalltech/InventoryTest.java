@@ -49,4 +49,10 @@ public class InventoryTest {
         //System.out.println(service.getById(2L));
         System.out.println(service.remove(2L));
     }
+
+
+    @Test
+    public void testWebClient() {
+        service.updateInventoryUsingAsn(1L).block();
+    }
 }
