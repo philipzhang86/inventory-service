@@ -12,6 +12,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -25,15 +26,8 @@ public class InventoryDomainService {
     private InventoryService service;
     private InventoryMapper mapper;
     private CacheManager cacheManager;
-  /*  private ObjectMapper objectMapper = new ObjectMapper();
-    private WebClient webClient = WebClient.create();
     @Autowired
-    private KafkaTemplate<String,String> kafkaTemplate;
-
-    public void receiveAsnMessage(String message) throws Exception {
-        Inventory inventory = objectMapper.readValue(message, Inventory.class);
-        service.save(inventory);
-    }*/
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
     private AsnServiceClient asnServiceClient;

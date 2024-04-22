@@ -26,21 +26,17 @@ spring:
       - classpath:config/redisson.yml
   main:
     allow-bean-definition-overriding: true
-
-
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
       group-id: group1
-      auto-offset-reset: earliest
       enable-auto-commit: true
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      retries: 0
+      retries: 10
       acks: 1
       compression-type: snappy
 
